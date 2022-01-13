@@ -5,27 +5,46 @@
         <title>ECV example</title>
         <link type="text/css" rel="stylesheet" media="all" href="style.css" />
         <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" />
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@1,500&display=swap" rel="stylesheet">
     </head>
     <body>
         <div class="container">
-            <h1>TalkYou</h1>
+            <!--<div id="head_Icon">
+                <img src="img/icon.png" alt="UserWriting" class="Icon" width="42" height="42" ><aside>TalkYou</aside>
+            </div>-->
             <div class="content">
                 <div id="vertical_bar">
-                    <img src="img/user.png" alt="UserWriting" width="42" height="42">
-                    <img src="img/user.png" alt="UserWriting" width="42" height="42">
+                    <ul>
+                        <li><img src="img/user.png" alt="UserWriting" width="42" height="42"></li>
+                        <li><img src="img/user.png" alt="UserWriting" width="42" height="42"></li>
+                        <li><img src="img/user.png" alt="UserWriting" width="42" height="42"></li>
+                        <li><img src="img/user.png" alt="UserWriting" width="42" height="42"></li>
+                        <li><img src="img/user.png" alt="UserWriting" width="42" height="42"></li>
+                        <li><img src="img/user.png" alt="UserWriting" width="42" height="42"></li>
+                        <li><img src="img/user.png" alt="UserWriting" width="42" height="42"></li>
+                        <li><img src="img/user.png" alt="UserWriting" width="42" height="42"></li>
+                    </ul>
+                                   
                     
                 </div>
 				<div id="horizontal_top">
-                    <img src="img/user.png" alt="UserWriting" width="42" height="42">
-                    <h5>Name User</h5> 
+                    <img src="img/MyUser.jpeg" alt="UserWriting" class="MyImage" width="60" height="60">
+                    <div class="text_name">
+                        <aside>Claudia Rodríguez</aside> 
+                        <aside class="text_small">En linea</aside>
+                    </div>
+                </div>
+                <div id="zone_writting">
+                    <input>
+                    <button onclick="sendMissage()"> Send</button>
                 </div>
             </div>
+            
         </div>
 
-        <div id="zone_writting">
-            <input>
-            <button onclick="sendMissage()"> Send</button>
-        </div>
+       
 
 		<script type="text/javascript" src="code.js"></script>
     </body>
