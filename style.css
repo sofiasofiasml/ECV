@@ -531,6 +531,7 @@ ul {
   flex-direction: column;
   padding: 0.5rem 1.5rem;
   height: 800px;
+  overflow: auto;
 }
 
 .imessage p {
@@ -565,7 +566,7 @@ p.from-me::before {
 }
 
 p.from-me::after {
-  background-color: #fff;
+  background-color: rgba(232, 232, 236, 1);
   border-bottom-left-radius: 0.5rem;
   right: -40px;
   transform:translate(-30px, -2px);
