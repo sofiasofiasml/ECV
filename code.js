@@ -3,6 +3,7 @@ function sendMissage()
 {
     var input = document.querySelector("input");
     var elem = document.createElement("p");
+    elem.className = "from-me"; 
     elem.innerText = input.value; 
     var chat = document.querySelector("#chat");
     chat.appendChild(elem)

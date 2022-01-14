@@ -476,7 +476,7 @@ dl,
 ol,
 ul {
   list-style: none;
-  margin-top: 70%;
+  margin-top: 20%;
 }
 .content #vertical_bar ul li
 {
@@ -509,7 +509,111 @@ ul {
   border-radius: 10px 0px 10px 10px;
   
 }
-#zone_writting
+#myTextbox1
 {
-  
+  background: rgba(126, 126, 126, 0.8);
+  border-radius: 5px;
+  height: auto;
+  width: 77%;
+  color: #fff;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1em;
+  letter-spacing: .01em;
+  line-height: 1.6;
 }
+
+/*https://codepen.io/AllThingsSmitty/pen/jommGQ*/
+.imessage {
+  background-color: rgba(232, 232, 236, 0.8);
+  border: 1px solid #e5e5ea;
+  border-radius: 0.25rem;
+  display: flex;
+  flex-direction: column;
+  padding: 0.5rem 1.5rem;
+  height: 800px;
+}
+
+.imessage p {
+  border-radius: 1.15rem;
+  line-height: 1.25;
+  max-width: 75%;
+  padding: 0.5rem .875rem;
+  position: relative;
+  word-wrap: break-word;
+  margin: 10px;
+}
+
+.imessage p::before,
+.imessage p::after {
+  bottom: -0.1rem;
+  content: "";
+  height: 1rem;
+  position: absolute;
+}
+
+p.from-me {
+  align-self: flex-end;
+  background-color: rgb(11, 11, 66);
+  color: #fff; 
+}
+
+p.from-me::before {
+  border-bottom-left-radius: 0.8rem 0.7rem;
+  border-right: 1rem solid rgb(11, 11, 66);
+  right: -0.35rem;
+  transform: translate(0, -0.1rem);
+}
+
+p.from-me::after {
+  background-color: #fff;
+  border-bottom-left-radius: 0.5rem;
+  right: -40px;
+  transform:translate(-30px, -2px);
+  width: 10px;
+}
+
+
+/*Rcibir mensaje*/
+p.from-them {
+  align-items: flex-start;
+  background-color: #e5e5ea;
+  color: #000;
+}
+
+p.from-them:before {
+  border-bottom-right-radius: 0.8rem 0.7rem;
+  border-left: 1rem solid #e5e5ea;
+  left: -0.35rem;
+  transform: translate(0, -0.1rem);
+}
+
+p.from-them::after {
+  background-color: #fff;
+  border-bottom-right-radius: 0.5rem;
+  left: 20px;
+  transform: translate(-30px, -2px);
+  width: 10px;
+}
+/*Enviar emitocono*/
+p[class^="from-"].emoji {
+  background: none;
+  font-size: 2.5rem;
+}
+
+p[class^="from-"].emoji::before {
+  content: none;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
