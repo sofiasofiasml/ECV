@@ -6,9 +6,10 @@
         <link type="text/css" rel="stylesheet" media="all" href="style.css" />
         <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" />
         <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@1,500&display=swap" rel="stylesheet">
-    </head>
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@1,500&display=swap" rel="stylesheet">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>    
+</head>
     <body>
         <div class="container">
             <!--<div id="head_Icon">
@@ -32,12 +33,13 @@
 				<div id="horizontal_top">
                     <img src="img/MyUser.jpeg" alt="UserWriting" class="MyImage" width="60" height="60">
                     <div class="text_name">
-                        <aside>Claudia Rodríguez</aside> 
-                        <aside class="text_small">En linea</aside>
+                        <aside>Claudia Rodriguez</aside> 
+                        <aside class="text_small" id="state">En linea</aside>
                     </div>
                 </div>
                 <div id="zone_writting">
-                    <input>
+                    <div id="chat"></div>
+                    <input  id='myTextbox1' type='text'>
                     <button onclick="sendMissage()"> Send</button>
                 </div>
             </div>

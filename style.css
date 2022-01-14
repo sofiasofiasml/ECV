@@ -290,15 +290,9 @@ a {
 a:focus, a:hover {
   color: #65cdcf;
 }
+*/
 
-dl,
-ol,
-ul {
-  list-style: none;
-  margin-top: 0;
-  padding-left: 0;
-}
-
+/*
 dl dl,
 dl ol,
 dl ul,
@@ -478,6 +472,16 @@ div#horizontal_top img.MyImage
   height: 940px;
   border-radius: 2%;
 }
+dl,
+ol,
+ul {
+  list-style: none;
+  margin-top: 70%;
+}
+.content #vertical_bar ul li
+{
+  padding: 0px 0px 15px 0px; 
+}
 .text_small{
   font-size: 10px;
 }
@@ -503,6 +507,7 @@ div#horizontal_top img.MyImage
   width: 100px;
   float:left;
   border-radius: 10px 0px 10px 10px;
+  
 }
 #zone_writting
 {
