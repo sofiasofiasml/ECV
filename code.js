@@ -31,7 +31,7 @@ function handleKeyUp() {
 
 function OnKeyPress(e)
 {
-    if(e.code == "Enter")
+    if(e.code == "Enter" && !e.shiftKey)
     {
         sendMissage(); 
     }

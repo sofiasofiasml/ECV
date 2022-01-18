@@ -8,7 +8,8 @@
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@1,500&display=swap" rel="stylesheet">
-    </head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>    
+</head>
     <body>
         <div class="container">
             <div class="content">
@@ -38,11 +39,10 @@
 
                 <div id="zone_writting">
                     <div class="imessage" id="chat"></div>
-                    <div>
+                    <div id="imsg">
                         <input  id='myTextbox1' type='text'>
-                        <button onclick="sendMissage()"> Send</button>
+                        <button id='buttonSend' onclick="sendMissage()"> Send</button>
                     </div>
-                    
                 </div>
             </div>
             
