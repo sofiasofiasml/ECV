@@ -28,14 +28,17 @@ function handleKeyUp() {
     state.innerHTML = 'En linea';
 }, timeoutVal);
 }
+/*Shift+Enter: espacio
+Enter solo con nada: salto de linea no envia
+enter: envia, con contenido*/
 
 function OnKeyPress(e)
 {
-    if(e.code == "Enter" && !e.shiftKey)
+    if(e.code == "Enter" && !e.shiftKey && input.value!="")
     {
         sendMissage(); 
     }
-
+    
     state.textContent="Escribiendo...";
         
 }
