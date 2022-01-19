@@ -1,4 +1,4 @@
-var input = document.querySelector("input");
+var input = document.querySelector("textarea");
 var state = document.querySelector("#horizontal_top aside#state");
 function sendMissage()
 {

@@ -503,7 +503,7 @@ ul {
 #vertical_bar
 {
   background: rgba(3, 4, 70, 0.8);
-  height: 910px;
+  height: 948px;
   width: 100px;
   float:left;
   border-radius: 10px 0px 10px 10px;
@@ -525,26 +525,40 @@ ul {
   font-size: 1em;
   letter-spacing: .01em;
   line-height: 1.6;
-  width: 100%;
+  width: 10000px !important;
+  height: 70px !important;
+  resize: none;
+  overflow:auto; 
+
 }
-textarea { resize: both; overflow: auto; width: auto;}
+#myTextbox1::placeholder {
+  color: #fff;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1em;
+  letter-spacing: .01em;
+}
+
 #imsg
 {
-  
+  display: flex;
+  flex-direction: row;
+  overflow: auto;
 }
 #vertical_bar:hover ~ #himsg{
   margin-left: 200px;
 }
+
+
 /*https://codepen.io/AllThingsSmitty/pen/jommGQ*/
 .imessage {
   background-color: rgba(232, 232, 236, 0.8);
   border: 1px solid #e5e5ea;
   border-radius: 0.25rem;
   display: flex;
-  flex-direction: column;
   padding: 0.5rem 1.5rem;
-  height: 835px;
+  height: 800px;
   overflow: auto;
+  flex-direction: column;
 }
 
 .imessage p {
