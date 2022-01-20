@@ -1,5 +1,7 @@
 var input = document.querySelector("textarea");
 var state = document.querySelector("#horizontal_top aside#state");
+var BoolEnter = true; 
+var contEnter = 0; 
 function sendMissage()
 {
     var elem = document.createElement("p");  //div
@@ -7,7 +9,7 @@ function sendMissage()
     elem.innerText = input.value; 
     var chat = document.querySelector("#chat");
     chat.appendChild(elem); 
-    input.value=" "; 
+    input.value=""; 
     chat.scrollTop = 1000000; 
 }
 
@@ -26,6 +28,12 @@ function handleKeyUp() {
     window.clearTimeout(timer); // prevent errant multiple timeouts from being generated
     timer = window.setTimeout(() => {
     state.innerHTML = 'En linea';
+    if(BoolEnter == false && contEnter>1)
+    {
+        input.value=""; 
+        BoolEnter = false;  
+        contEnter =0; 
+    }
 }, timeoutVal);
 }
 /*Shift+Enter: espacio
@@ -35,19 +43,30 @@ Supr: Delate message send in chat*/
 
 function OnKeyPress(e)
 {
-    if(e.code == "Enter" && !e.shiftKey && input.value!="")
+    if(e.code == "Enter" && !e.shiftKey && input.value!="" )
     {
         sendMissage(); 
+        input.value=""; 
     }
     if(e.code == "Delete")
     {
         var chat = document.querySelector("#chat");
         chat.innerHTML = "";
     }
-    
-    console.log(e); 
+
     state.textContent="Escribiendo...";
         
+}
+
+document.addEventListener('keypress', logKey);
+
+function logKey(e) {
+    if(e.code == "Enter")
+    {
+        contEnter +=1; 
+        console.log(contEnter); 
+        BoolEnter = false; 
+    }
 }
 
 /*Finish Change Status*/

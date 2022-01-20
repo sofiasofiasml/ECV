@@ -475,8 +475,9 @@ div#horizontal_top img.MyImage
 	padding: 1em;
   background-image: url('img/background1.jpg');
   width: 100%;
-  height: 1200px;
+  height: 900px;
   border-radius: 2%;
+  margin-top: 13px;
 }
 dl,
 ol,
@@ -512,7 +513,7 @@ ul {
 {
   grid-column: 1 / 3;
   background: rgba(3, 4, 70, 0.8);
-  height: 1170px;
+  height: 870px;
   width: 100px;
   float:left;
   border-radius: 10px 0px 10px 10px;
@@ -565,7 +566,7 @@ ul {
   border-radius: 0.25rem;
   display: flex;
   padding: 0.5rem 1.5rem;
-  height: 1005px;
+  height: 730px;
   overflow: auto;
   flex-direction: column;
 }
