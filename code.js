@@ -30,7 +30,8 @@ function handleKeyUp() {
 }
 /*Shift+Enter: espacio
 Enter solo con nada: salto de linea no envia
-enter: envia, con contenido*/
+enter: envia, con contenido
+Supr: Delate message send in chat*/
 
 function OnKeyPress(e)
 {
@@ -38,7 +39,13 @@ function OnKeyPress(e)
     {
         sendMissage(); 
     }
+    if(e.code == "Delete")
+    {
+        var chat = document.querySelector("#chat");
+        chat.innerHTML = "";
+    }
     
+    console.log(e); 
     state.textContent="Escribiendo...";
         
 }
