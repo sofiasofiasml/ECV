@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-        <title>ECV example</title>
+        <title>ECV</title>
         <link type="text/css" rel="stylesheet" media="all" href="style.css" />
         <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" />
         <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -16,6 +16,7 @@
                 <div id="vertical_bar">
                     <ul>
                         <li><img src="img/iconW.png" alt="UserWriting" width="42" height="42"></li>
+                        <li><img src="img/plusPersonW.png" onclick="togglePopup()" alt="UserWriting" width="42" height="42"></li>
                         <li><img src="img/user.png" alt="UserWriting" width="42" height="42"></li>
                         <li><img src="img/user.png" alt="UserWriting" width="42" height="42"></li>
                         <li><img src="img/user.png" alt="UserWriting" width="42" height="42"></li>
@@ -24,7 +25,6 @@
                         <li><img src="img/user.png" alt="UserWriting" width="42" height="42"></li>
                         <li><img src="img/user.png" alt="UserWriting" width="42" height="42"></li>
                         <li><img src="img/user.png" alt="UserWriting" width="42" height="42"></li>
-                        <li><img src="img/arrowB.png" alt="UserWriting" width="42" height="42"></li>
                     </ul>
                                    
                     
@@ -38,10 +38,22 @@
                 </div>
 
                 <div id="zone_writting">
+                    <div class="popup" id="popup-1">
+                        <div class="overlayNewUser"></div>
+                        <div class="DataNewUser">
+                            <div class="close-btn" onclick="togglePopup()">&times;</div>
+                            <h3>Nuevo usuario</h3>
+                            <label for="fname">Nombre:</label>
+                            <input type="text" id="nameUser" name="nameUser"><br><br>
+                            <input type="submit" value="Crear" onclick="createNewUser()">
+                        </div>
+                    </div>
                     <div class="imessage" id="chat"></div>
                     <div id="imsg">
                         <textarea id='myTextbox1' placeholder="Escribe un mensaje aquí"></textarea>
-                        <button id='buttonSend' onclick="sendMissage()"> Send</button>
+                        <div id="bottonSend">
+                            <img src="img/send.png" alt="imageSend" id="imageSend" onclick="ButtonSendMessage()" width="20" height="20">
+                        </div>
                     </div>
                 </div>
             </div>

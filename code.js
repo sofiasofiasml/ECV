@@ -2,6 +2,19 @@ var input = document.querySelector("textarea");
 var state = document.querySelector("#horizontal_top aside#state");
 var BoolEnter = true; 
 var contEnter = 0; 
+
+function User(){
+    this.nameU = "Unknown";
+    this.conversation = [];  
+}
+
+function createNewUser()
+{
+    var newUser = new User(); 
+    newUser.nameU = document.querySelector("#nameUser"); 
+    console.log(newUser.nameU.value); 
+}
+
 function sendMissage()
 {
     var elem = document.createElement("p");  //div
@@ -13,6 +26,12 @@ function sendMissage()
     chat.scrollTop = 1000000; 
 }
 
+function ButtonSendMessage()
+{
+    if(input.value!=""){
+        sendMissage()
+    }
+}
 /*Change Status. Role of https://stackoverflow.com/questions/12797700/jquery-detect-change-in-input-field*/
 const typer = document.getElementById('myTextbox1');
 let timer, timeoutVal = 300; // time it takes to wait for user to stop typing in ms
@@ -69,10 +88,12 @@ function logKey(e) {
     }
     else{
         contEnter =0; 
-    }
-    
-    
-    
+    }    
 }
 
 /*Finish Change Status*/
+
+function togglePopup()
+{
+    document.getElementById("popup-1").classList.toggle("active"); 
+}
