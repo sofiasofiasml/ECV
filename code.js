@@ -28,10 +28,11 @@ function handleKeyUp() {
     window.clearTimeout(timer); // prevent errant multiple timeouts from being generated
     timer = window.setTimeout(() => {
     state.innerHTML = 'En linea';
-    if(BoolEnter == false && contEnter>1)
+    if( contEnter>1 || BoolEnter == false)
     {
         input.value=""; 
-        BoolEnter = false;  
+        
+        BoolEnter = true;  
         contEnter =0; 
     }
 }, timeoutVal);
@@ -43,10 +44,10 @@ Supr: Delate message send in chat*/
 
 function OnKeyPress(e)
 {
-    if(e.code == "Enter" && !e.shiftKey && input.value!="" )
+    if(e.code == "Enter" && !e.shiftKey && input.value!="" && contEnter<1)
     {
         sendMissage(); 
-        input.value=""; 
+        BoolEnter = false;  
     }
     if(e.code == "Delete")
     {
@@ -61,12 +62,16 @@ function OnKeyPress(e)
 document.addEventListener('keypress', logKey);
 
 function logKey(e) {
-    if(e.code == "Enter")
+    if(e.code == "Enter" && !e.shiftKey)
     {
         contEnter +=1; 
-        console.log(contEnter); 
-        BoolEnter = false; 
     }
+    else{
+        contEnter =0; 
+    }
+    
+    
+    
 }
 
 /*Finish Change Status*/
