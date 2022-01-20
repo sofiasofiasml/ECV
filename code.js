@@ -40,7 +40,8 @@ function handleKeyUp() {
 /*Shift+Enter: espacio
 Enter solo con nada: salto de linea no envia
 enter: envia, con contenido
-Supr: Delate message send in chat*/
+Supr: Delate message send in chat
+2 Enter without letter: clean message*/
 
 function OnKeyPress(e)
 {
