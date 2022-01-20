@@ -441,6 +441,12 @@ h1 {
 	background-color: #1f2525;
 }
 */
+.container {
+  display: grid;
+  grid-auto-columns: minmax(100px, auto);
+  grid-template-rows:  minmax(100px, auto);
+}
+
 #head_Icon
 {
   margin: 2%;
@@ -469,7 +475,7 @@ div#horizontal_top img.MyImage
 	padding: 1em;
   background-image: url('img/background1.jpg');
   width: 100%;
-  height: 980px;
+  height: 1200px;
   border-radius: 2%;
 }
 dl,
@@ -490,6 +496,8 @@ ul {
 }
 #horizontal_top
 {
+  grid-column: 2 / 4;
+  grid-row: 1 / 3;
   margin-left: 100px;
   background: rgba(3, 4, 70, 0.8);
   border-top-right-radius: 10px;
@@ -502,8 +510,9 @@ ul {
 }
 #vertical_bar
 {
+  grid-column: 1 / 3;
   background: rgba(3, 4, 70, 0.8);
-  height: 948px;
+  height: 1170px;
   width: 100px;
   float:left;
   border-radius: 10px 0px 10px 10px;
@@ -556,7 +565,7 @@ ul {
   border-radius: 0.25rem;
   display: flex;
   padding: 0.5rem 1.5rem;
-  height: 800px;
+  height: 1005px;
   overflow: auto;
   flex-direction: column;
 }
