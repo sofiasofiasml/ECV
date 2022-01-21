@@ -2,6 +2,36 @@ var input = document.querySelector("textarea");
 var state = document.querySelector("#horizontal_top aside#state");
 var BoolEnter = true; 
 var contEnter = 0; 
+var id = 0; 
+var activeUser = "Unknown"; 
+
+//global container to store important stuff
+var DB = {
+	msgs: []
+};
+
+//Save in DataBase the message
+function onMessage(id,msg)
+{
+	//store message
+    var msg_str = JSON.stringify(msg);
+	DB.msgs.push( msg_str ); 
+    
+	//displayMessage( msg );
+}
+
+//Canal global CHAT
+
+//SERVER
+
+var server = new SillyClient();
+server.connect( "wss://ecv-etic.upf.edu/node/9000/ws", "u137424_room");
+server.on_ready = function( my_id )
+{
+	console.log("HOLA");
+}
+
+
 
 function User(){
     this.nameU = "Unknown";
@@ -34,11 +64,22 @@ function createNewUser()
     document.querySelector('ul').appendChild(node);
 }
 
+
 function sendMissage()
 {
+    id +=1; 
     var elem = document.createElement("p");  //div
+    var msg = {
+        type: "text",
+        content: input.value,
+        className: "from-me", 
+        username: activeUser
+    };
     elem.className = "from-me"; 
-    elem.innerText = input.value; 
+    elem.innerText = msg.content; 
+    //save message in DB 
+    onMessage(id,msg); 
+    
     var chat = document.querySelector("#chat");
     chat.appendChild(elem); 
     input.value=""; 
