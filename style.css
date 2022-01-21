@@ -492,6 +492,15 @@ li img
   width: 42px; 
   height: 42px; 
 }
+#ImgCofig
+{
+  height: 20px;
+  width: 20px;
+  float: right;
+  margin-top: -25px;
+  margin-right: 10px;
+  cursor: pointer;
+}
 .content #vertical_bar ul li
 {
   padding: 0px 0px 15px 0px; 
@@ -544,7 +553,7 @@ li img
   margin: 10px; 
   margin-left: 10px !important;
   text-transform: capitalize;
- 
+  color: #fff;
 }
 #myTextbox1
 {
