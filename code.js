@@ -12,7 +12,26 @@ function createNewUser()
 {
     var newUser = new User(); 
     newUser.nameU = document.querySelector("#nameUser"); 
+    
     console.log(newUser.nameU.value); 
+    
+    var node = document.createElement('li');
+
+    var imag = document.createElement('img');
+    imag.setAttribute("src", "img/user.png");
+
+    var nameList = document.createElement('h5');
+    if(newUser.nameU.value =="" || newUser.nameU.value ==" ")
+    {
+        newUser.nameU.value = "Unknown"; 
+    }
+    nameList.textContent = newUser.nameU.value; 
+    nameList.setAttribute("display", "none");
+    
+    node.appendChild(imag);
+    node.appendChild(nameList);
+    newUser.nameU.value = ""; // Clean input
+    document.querySelector('ul').appendChild(node);
 }
 
 function sendMissage()
