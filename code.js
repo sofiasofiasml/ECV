@@ -1,14 +1,46 @@
 var input = document.querySelector("textarea");
+var list = document.querySelector("li");
 var state = document.querySelector("#horizontal_top aside#state");
 var BoolEnter = true; 
 var contEnter = 0; 
 var id = 0; 
+var idPerson =0; 
 var activeUser = "Unknown"; 
+var msg = {
+    type: "text",
+    content: "",
+    className: "from-me", 
+    username: activeUser
+};
+//SERVER
+var server = new SillyClient();
+server.connect( "wss://ecv-etic.upf.edu/node/9000/ws", "u137424_room");
+server.on_ready = function( my_id )
+{
+	console.log("Connect server");
+}
+
+server.on_message = function( my_id, msg)
+{
+	console.log("HOLA MESSAGE", msg);
+}
 
 //global container to store important stuff
 var DB = {
 	msgs: []
 };
+
+
+list.addEventListener("click", seeMessagePerson); 
+function seeMessagePerson()
+{
+    for(var i =0; i< list.parentElement.childNodes.length; i++)
+    {
+        console.log(list.parentElement.childNodes[i].id); 
+       
+    }
+    
+}
 
 //Save in DataBase the message
 function onMessage(id,msg)
@@ -16,36 +48,32 @@ function onMessage(id,msg)
 	//store message
     var msg_str = JSON.stringify(msg);
 	DB.msgs.push( msg_str ); 
-    
+    console.log(DB); 
 	//displayMessage( msg );
 }
 
 //Canal global CHAT
 
-//SERVER
-
-var server = new SillyClient();
-server.connect( "wss://ecv-etic.upf.edu/node/9000/ws", "u137424_room");
-server.on_ready = function( my_id )
-{
-	console.log("HOLA");
-}
-
-
-
 function User(){
     this.nameU = "Unknown";
+    this.id = 0; 
     this.conversation = [];  
 }
 
 function createNewUser()
 {
     var newUser = new User(); 
+    idPerson +=1; 
+    newUser.id = idPerson; 
     newUser.nameU = document.querySelector("#nameUser"); 
     
     console.log(newUser.nameU.value); 
     
     var node = document.createElement('li');
+    node.setAttribute("id", newUser.id); 
+    //node.className= "Person"; 
+    node.setAttribute("class", "Person"); 
+    node.setAttribute("onclick", "seeMessagePerson()"); 
 
     var imag = document.createElement('img');
     imag.setAttribute("src", "img/user.png");
@@ -65,23 +93,23 @@ function createNewUser()
 }
 
 
+// Pass Object.msg in Object.paragraf
+function ObjectToParagraf(msg)
+{
+    var elm = document.createElement("p");  //div
+    elm.classList = msg.className; 
+    elm.innerText = msg.content; 
+    return elm; 
+}
+
 function sendMissage()
 {
     id +=1; 
-    var elem = document.createElement("p");  //div
-    var msg = {
-        type: "text",
-        content: input.value,
-        className: "from-me", 
-        username: activeUser
-    };
-    elem.className = "from-me"; 
-    elem.innerText = msg.content; 
+    msg.content = input.value; 
     //save message in DB 
     onMessage(id,msg); 
-    
     var chat = document.querySelector("#chat");
-    chat.appendChild(elem); 
+    chat.appendChild(ObjectToParagraf(msg)); 
     input.value=""; 
     chat.scrollTop = 1000000; 
 }
