@@ -1,17 +1,25 @@
 var input = document.querySelector("textarea");
-var list = document.querySelector("li");
 var state = document.querySelector("#horizontal_top aside#state");
 var BoolEnter = true; 
 var contEnter = 0; 
 var id = 0; 
 var idPerson =0; 
-var activeUser = "Unknown"; 
+var chat = document.querySelector("#chat");
+var activeUser = "User1"; 
 var msg = {
     type: "text",
     content: "",
     className: "from-me", 
-    username: activeUser
+    username: activeUser.id, 
+    hidden: false
 };
+var user1Click = document.getElementById("User1");
+var user2Click = document.getElementById("User2");
+var user3Click = document.getElementById("User3");
+var user4Click = document.getElementById("User4");
+var user5Click = document.getElementById("User5");
+    
+    
 //SERVER
 var server = new SillyClient();
 server.connect( "wss://ecv-etic.upf.edu/node/9000/ws", "u137424_room");
@@ -27,26 +35,43 @@ server.on_message = function( my_id, msg)
 
 //global container to store important stuff
 var DB = {
-	msgs: []
+	msgs: [],
+    user: []
 };
 
 
-list.addEventListener("click", seeMessagePerson); 
-function seeMessagePerson()
+user1Click.addEventListener("click", hiddenMessagesOtherUsers); 
+user2Click.addEventListener("click", hiddenMessagesOtherUsers); 
+user3Click.addEventListener("click", hiddenMessagesOtherUsers); 
+user4Click.addEventListener("click", hiddenMessagesOtherUsers); 
+user5Click.addEventListener("click", hiddenMessagesOtherUsers); 
+function hiddenMessagesOtherUsers()
 {
-    for(var i =0; i< list.parentElement.childNodes.length; i++)
-    {
-        console.log(list.parentElement.childNodes[i].id); 
-       
+    //Change active Person
+    console.log("EDD"); 
+    activeUser = this.id; 
+    activePerson(this); 
+    for(var j = 0; j< DB.msgs.length; j++){
+        //no se vea el mensaje 
+        if(DB.msgs[j].username != this.id)
+        {
+            DB.msgs[j].hidden = true;  
+            chat.childNodes[j].style.display ="none"; 
+        }
+        else{
+            DB.msgs[j].hidden = false; 
+            //Si el mensaje no es del usuario selecionado, que no se vea
+            chat.childNodes[j].style.display =""; 
+        }
     }
-    
 }
+
 
 //Save in DataBase the message
 function onMessage(id,msg)
 {
 	//store message
-    var msg_str = JSON.stringify(msg);
+    var msg_str = JSON.parse(JSON.stringify(msg));
 	DB.msgs.push( msg_str ); 
     console.log(DB); 
 	//displayMessage( msg );
@@ -64,33 +89,58 @@ function createNewUser()
 {
     var newUser = new User(); 
     idPerson +=1; 
-    newUser.id = idPerson; 
-    newUser.nameU = document.querySelector("#nameUser"); 
-    
-    console.log(newUser.nameU.value); 
-    
-    var node = document.createElement('li');
-    node.setAttribute("id", newUser.id); 
-    //node.className= "Person"; 
-    node.setAttribute("class", "Person"); 
-    node.setAttribute("onclick", "seeMessagePerson()"); 
+    if(idPerson < 6){
+        newUser.id = "User"+idPerson; 
+        newUser.nameU = document.querySelector("#nameUser"); 
+                
+        var node = document.getElementById(newUser.id);
+       //node.className= "Person"; 
+        node.setAttribute("class", "Person"); 
+        node.setAttribute("click", "seeMessagePerson"); 
 
-    var imag = document.createElement('img');
-    imag.setAttribute("src", "img/user.png");
+        var imag = document.createElement('img');
+        imag.setAttribute("src", "img/user.png");
 
-    var nameList = document.createElement('h5');
-    if(newUser.nameU.value =="" || newUser.nameU.value ==" ")
-    {
-        newUser.nameU.value = "Unknown"; 
+        var nameList = document.createElement('h5');
+        if(newUser.nameU.value =="" || newUser.nameU.value ==" ")
+        {
+            newUser.nameU.value = "Unknown"; 
+        }
+        nameList.textContent = newUser.nameU.value; 
+        nameList.setAttribute("display", "none");
+        
+        node.appendChild(imag);
+        node.appendChild(nameList);
+        newUser.nameU.value = ""; // Clean input
+        activeUser = document.getElementById(newUser.id).id;
+        DB.user.push(newUser.id); 
+        //Change Person is active
+        activePerson(node); 
     }
-    nameList.textContent = newUser.nameU.value; 
-    nameList.setAttribute("display", "none");
-    
-    node.appendChild(imag);
-    node.appendChild(nameList);
-    newUser.nameU.value = ""; // Clean input
-    document.querySelector('ul').appendChild(node);
+    else{
+        alert("Not mush Person"); 
+    }
 }
+/*Change color background person is active talking */
+function activePerson(user)
+{ 
+    for(var i= 0; i < DB.user.length; i++)
+    {
+        if(user.id == DB.user[i] )
+        {
+            user.style.background = 'rgba(143, 141, 141, 0.2)'; 
+            user.style.borderRadius = '50px'; 
+        }
+        else{
+            var userClick = document.getElementById(DB.user[i]);
+            userClick.style.background = 'rgba(143, 141, 141, 0)'; 
+            userClick.style.borderRadius = '0px'; 
+            
+        }        
+    }
+}
+
+
 
 
 // Pass Object.msg in Object.paragraf
@@ -106,9 +156,9 @@ function sendMissage()
 {
     id +=1; 
     msg.content = input.value; 
+    msg.username = activeUser; 
     //save message in DB 
     onMessage(id,msg); 
-    var chat = document.querySelector("#chat");
     chat.appendChild(ObjectToParagraf(msg)); 
     input.value=""; 
     chat.scrollTop = 1000000; 

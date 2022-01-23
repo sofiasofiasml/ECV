@@ -10,6 +10,7 @@
 *:after,
 *:before {
   box-sizing: inherit;
+
 }
 
 html {
@@ -487,10 +488,21 @@ ul {
   cursor: pointer;
 }
 
+li{
+  position: relative;
+  left: -10px;
+}
+
 li img 
 {
   width: 42px; 
   height: 42px; 
+  position: relative;
+  top: 10px;
+}
+li.Person img 
+{
+  left: 8px;
 }
 #ImgCofig
 {
