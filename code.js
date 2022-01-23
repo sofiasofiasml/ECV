@@ -65,7 +65,16 @@ server.on_ready = function( my_id )
 
 server.on_message = function( my_id, msg)
 {
-	console.log("HOLA MESSAGE", msg);
+    
+    if (typeof msg === 'string' || msg instanceof String)
+    {
+       var msg_obj =JSON.parse(msg); 
+    }
+    else{
+        var msg_obj = msg; 
+    }
+    msg_obj.className = "from-them"; 
+    chat.appendChild(ObjectToParagraf(msg_obj)); 
 }
 
 
@@ -102,9 +111,11 @@ function hiddenMessagesOtherUsers()
 function onMessage(id,msg)
 {
 	//store message
-    var msg_str = JSON.parse(JSON.stringify(msg));
-	DB.msgs.push( msg_str ); 
-    console.log(DB); 
+    var msg_str = JSON.stringify(msg);
+    var msg_obj = JSON.parse(msg_str);
+    //SEND MESSAGE IN SERVER
+    server.sendMessage( msg_str);
+	DB.msgs.push(msg_obj); 
 	//displayMessage( msg );
 }
 
@@ -181,7 +192,8 @@ function sendMissage()
 {
     id +=1; 
     msg.content = input.value; 
-    msg.username = activeUser; 
+    msg.username = activeUser;
+    
     //save message in DB 
     onMessage(id,msg); 
     chat.appendChild(ObjectToParagraf(msg)); 

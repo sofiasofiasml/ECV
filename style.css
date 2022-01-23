@@ -655,19 +655,20 @@ p.from-me::after {
 /*Rcibir mensaje*/
 p.from-them {
   align-items: flex-start;
-  background-color: #e5e5ea;
-  color: #000;
+  background-color: #818183;
+  color: white;
+  width: 150px;
 }
 
 p.from-them:before {
   border-bottom-right-radius: 0.8rem 0.7rem;
-  border-left: 1rem solid #e5e5ea;
+  border-left: 1rem solid #818183;
   left: -0.35rem;
   transform: translate(0, -0.1rem);
 }
 
 p.from-them::after {
-  background-color: #fff;
+  background-color: rgba(232, 232, 236, 1);
   border-bottom-right-radius: 0.5rem;
   left: 20px;
   transform: translate(-30px, -2px);
