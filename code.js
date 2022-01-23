@@ -27,6 +27,9 @@ var user2Click = document.getElementById("User2");
 var user3Click = document.getElementById("User3");
 var user4Click = document.getElementById("User4");
 var user5Click = document.getElementById("User5");
+
+var grupalClick = document.getElementById("NameMyUser");
+
 //User
 function User(){
     this.nameU = "Unknown";
@@ -259,6 +262,7 @@ function logKey(e) {
         contEnter =0; 
     }    
 }
+/*Configuration*/
 
 /*Overlay: Agregar usuario*/
 function togglePopup()
