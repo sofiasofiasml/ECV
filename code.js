@@ -28,7 +28,7 @@ var user3Click = document.getElementById("User3");
 var user4Click = document.getElementById("User4");
 var user5Click = document.getElementById("User5");
 
-var grupalClick = document.getElementById("NameMyUser");
+
 
 //User
 function User(){
@@ -263,6 +263,15 @@ function logKey(e) {
     }    
 }
 /*Configuration*/
+function ChangeNameRoom()
+{
+    var NameUser = document.getElementById("NameMyUser");
+    var NameUserInput = document.getElementById("nameUser");
+    var NameRoomInput = document.getElementById("nameRoom");
+    var elm = document.createElement("h5");  //div
+    NameUser.value = NameUserInput.value; 
+    
+}
 
 /*Overlay: Agregar usuario*/
 function togglePopup()
