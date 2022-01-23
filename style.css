@@ -684,7 +684,8 @@ p[class^="from-"].emoji::before {
   content: none;
 }
 
-.popup .overlayNewUser
+.popup .overlayNewUser, 
+.popup .overlayConfiguration
 {
   position: fixed;
   top: 0px; 
@@ -696,7 +697,8 @@ p[class^="from-"].emoji::before {
   display: none;
 }
 
-.popup .DataNewUser
+.popup .DataNewUser,
+.popup .DataConfiguration
 {
   position: absolute;
   top: 50%;
@@ -729,12 +731,14 @@ p[class^="from-"].emoji::before {
   border-radius: 50%;
 }
 
-.popup.active .overlayNewUser
+.popup.active .overlayNewUser,
+.popup.active .overlayConfiguration
 {
   display: block;
 }
 
-.popup.active .DataNewUser
+.popup.active .DataNewUser,
+.popup.active .DataConfiguration
 {
   transition: all 300ms ease-in-out;
   transform: translate(-50%, -50%)scale(1);

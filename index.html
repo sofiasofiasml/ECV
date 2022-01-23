@@ -28,7 +28,7 @@
                     <div class="text_name">
                         <aside>Claudia Rodriguez</aside> 
                         <aside class="text_small" id="state">En linea</aside>
-                        <img src="img/configW.png" id="ImgCofig"alt="imgConfig">
+                        <img src="img/configW.png" id="ImgCofig" onclick="togglePopupConfig()" alt="imgConfig">
                     </div>
                 </div>
 
@@ -39,6 +39,18 @@
                             <div class="close-btn" onclick="togglePopup()">&times;</div>
                             <h3>Nuevo usuario</h3>
                             <label for="fname">Nombre:</label>
+                            <input type="text" id="nameUser" name="nameUser"><br><br>
+                            <input type="submit" value="Crear" onclick="createNewUser()">
+                        </div>
+                    </div>
+                    <div class="popup" id="popup-2">
+                        <div class="overlayConfiguration"></div>
+                        <div class="DataConfiguration">
+                            <div class="close-btn" onclick="togglePopupConfig()">&times;</div>
+                            <h3>Configuración</h3>
+                            <label for="fname">Room:</label>
+                            <input type="text" id="nameUser" name="nameUser"><br><br>
+                            <label for="fname">Nombre de Usuario:</label>
                             <input type="text" id="nameUser" name="nameUser"><br><br>
                             <input type="submit" value="Crear" onclick="createNewUser()">
                         </div>

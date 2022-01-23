@@ -265,3 +265,8 @@ function togglePopup()
 {
     document.getElementById("popup-1").classList.toggle("active"); 
 }
+/*Overlay: Configuración romm y nombre de usuario*/
+function togglePopupConfig()
+{
+    document.getElementById("popup-2").classList.toggle("active"); 
+}
