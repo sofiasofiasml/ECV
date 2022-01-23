@@ -1,11 +1,13 @@
+/*Atributes*/
 var input = document.querySelector("textarea");
+let timer, timeoutVal = 300; // time it takes to wait for user to stop typing in ms
 var state = document.querySelector("#horizontal_top aside#state");
 var BoolEnter = true; 
 var contEnter = 0; 
 var id = 0; 
 var idPerson =0; 
 var chat = document.querySelector("#chat");
-var activeUser = "User1"; 
+var activeUser = "Grupal"; 
 var msg = {
     type: "text",
     content: "",
@@ -13,16 +15,49 @@ var msg = {
     username: activeUser.id, 
     hidden: false
 };
+//global container to store important stuff
+var DB = {
+	msgs: [],
+    user: []
+};
+
+var grupalClick = document.getElementById("Grupal");
 var user1Click = document.getElementById("User1");
 var user2Click = document.getElementById("User2");
 var user3Click = document.getElementById("User3");
 var user4Click = document.getElementById("User4");
 var user5Click = document.getElementById("User5");
-    
+//User
+function User(){
+    this.nameU = "Unknown";
+    this.id = 0;   
+}  
     
 //SERVER
 var server = new SillyClient();
 server.connect( "wss://ecv-etic.upf.edu/node/9000/ws", "u137424_room");
+grupalClick.addEventListener("click", changeRoom); 
+user1Click.addEventListener("click", changeRoom); 
+user2Click.addEventListener("click", changeRoom); 
+user3Click.addEventListener("click", changeRoom); 
+user4Click.addEventListener("click", changeRoom); 
+user5Click.addEventListener("click", changeRoom); 
+//CHANGE THE ROOM OF SERVER
+function changeRoom(){
+    console.log("CHANGE ROOM"); 
+    if(this.id == "Grupal"){
+        server.connect( "wss://ecv-etic.upf.edu/node/9000/ws", "CHAT");
+        for(var i= 0; i < DB.user.length; i++)
+        {
+            var userClick = document.getElementById(DB.user[i]);
+            userClick.style.background = 'rgba(143, 141, 141, 0)'; 
+            userClick.style.borderRadius = '0px';     
+        }
+    }
+    else{
+        server.connect( "wss://ecv-etic.upf.edu/node/9000/ws", "u137424_room");
+    }
+}
 server.on_ready = function( my_id )
 {
 	console.log("Connect server");
@@ -33,22 +68,18 @@ server.on_message = function( my_id, msg)
 	console.log("HOLA MESSAGE", msg);
 }
 
-//global container to store important stuff
-var DB = {
-	msgs: [],
-    user: []
-};
 
-
+/*Ocultar mensajes enviados por otra persona*/
+grupalClick.addEventListener("click", hiddenMessagesOtherUsers); 
 user1Click.addEventListener("click", hiddenMessagesOtherUsers); 
 user2Click.addEventListener("click", hiddenMessagesOtherUsers); 
 user3Click.addEventListener("click", hiddenMessagesOtherUsers); 
 user4Click.addEventListener("click", hiddenMessagesOtherUsers); 
 user5Click.addEventListener("click", hiddenMessagesOtherUsers); 
+
 function hiddenMessagesOtherUsers()
 {
-    //Change active Person
-    console.log("EDD"); 
+    //Change active Person 
     activeUser = this.id; 
     activePerson(this); 
     for(var j = 0; j< DB.msgs.length; j++){
@@ -79,11 +110,7 @@ function onMessage(id,msg)
 
 //Canal global CHAT
 
-function User(){
-    this.nameU = "Unknown";
-    this.id = 0; 
-    this.conversation = [];  
-}
+
 
 function createNewUser()
 {
@@ -141,8 +168,6 @@ function activePerson(user)
 }
 
 
-
-
 // Pass Object.msg in Object.paragraf
 function ObjectToParagraf(msg)
 {
@@ -170,17 +195,9 @@ function ButtonSendMessage()
         sendMissage()
     }
 }
-/*Change Status. Role of https://stackoverflow.com/questions/12797700/jquery-detect-change-in-input-field*/
-const typer = document.getElementById('myTextbox1');
-let timer, timeoutVal = 300; // time it takes to wait for user to stop typing in ms
-/*When you write in input, change state: Escribiendo*/
 
-text= document.querySelector('#myTextbox1'); 
-
-input.addEventListener("keydown", OnKeyPress); 
 /*Parentesis le pasas el resultado de la función, no la función*/
-typer.addEventListener('keyup', handleKeyUp); /*Eventos: cuando sucede algo */
-/* You stop writing. Role of https://dev.to/eaich/how-to-detect-when-the-user-stops-typing-3cm1*/
+input.addEventListener('keyup', handleKeyUp); 
 function handleKeyUp() {
     window.clearTimeout(timer); // prevent errant multiple timeouts from being generated
     timer = window.setTimeout(() => {
@@ -194,12 +211,14 @@ function handleKeyUp() {
     }
 }, timeoutVal);
 }
+
 /*Shift+Enter: espacio
 Enter solo con nada: salto de linea no envia
 enter: envia, con contenido
 Supr: Delate message send in chat
 2 Enter without letter: clean message*/
 
+input.addEventListener("keydown", OnKeyPress); 
 function OnKeyPress(e)
 {
     if(e.code == "Enter" && !e.shiftKey && input.value!="" && contEnter<1)
@@ -216,7 +235,7 @@ function OnKeyPress(e)
     state.textContent="Escribiendo...";
         
 }
-
+/*When you write in input, change state: Escribiendo*/
 document.addEventListener('keypress', logKey);
 
 function logKey(e) {
@@ -229,8 +248,7 @@ function logKey(e) {
     }    
 }
 
-/*Finish Change Status*/
-
+/*Overlay: Agregar usuario*/
 function togglePopup()
 {
     document.getElementById("popup-1").classList.toggle("active"); 

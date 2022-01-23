@@ -567,7 +567,7 @@ li.Person img
   text-transform: capitalize;
   color: #fff;
 }
-#myTextbox1
+#textarea
 {
   background: rgba(126, 126, 126, 0.8);
   border-radius: 5px;
@@ -582,7 +582,7 @@ li.Person img
   overflow:auto; 
 
 }
-#myTextbox1::placeholder {
+#textarea::placeholder {
   color: #fff;
   font-family: 'Montserrat', sans-serif;
   font-size: 1em;
@@ -754,7 +754,6 @@ p[class^="from-"].emoji::before {
 
 #imageSend
 {
-  margin-top: 25px;
   margin-left: 10px;
   margin-right: 10px;
 }
