@@ -18,7 +18,8 @@ var msg = {
 //global container to store important stuff
 var DB = {
 	msgs: [],
-    user: []
+    user: [],
+    nameUser: []
 };
 
 var grupalClick = document.getElementById("Grupal");
@@ -28,8 +29,9 @@ var user3Click = document.getElementById("User3");
 var user4Click = document.getElementById("User4");
 var user5Click = document.getElementById("User5");
 
-
-
+var MyName = document.getElementById("MyUserName");
+var NameRoom = document.getElementById("RoomName"); 
+var ActualRoom = "u137424_room"; 
 //User
 function User(){
     this.nameU = "Unknown";
@@ -38,7 +40,7 @@ function User(){
     
 //SERVER
 var server = new SillyClient();
-server.connect( "wss://ecv-etic.upf.edu/node/9000/ws", "u137424_room");
+server.connect( "wss://ecv-etic.upf.edu/node/9000/ws", ActualRoom);
 grupalClick.addEventListener("click", changeRoom); 
 user1Click.addEventListener("click", changeRoom); 
 user2Click.addEventListener("click", changeRoom); 
@@ -58,7 +60,7 @@ function changeRoom(){
         }
     }
     else{
-        server.connect( "wss://ecv-etic.upf.edu/node/9000/ws", "u137424_room");
+        server.connect( "wss://ecv-etic.upf.edu/node/9000/ws", ActualRoom);
     }
 }
 server.on_ready = function( my_id )
@@ -117,14 +119,20 @@ function onMessage(id,msg)
     var msg_str = JSON.stringify(msg);
     var msg_obj = JSON.parse(msg_str);
     //SEND MESSAGE IN SERVER
-    server.sendMessage( msg_str);
+    if(msg_obj.username == "Grupal"){
+        server.sendMessage( msg_str);
+    }
+    else{
+        for(var i=0; i<DB.user.length; i++){
+            if(msg_obj.username == DB.user[i]){
+                console.log(DB.nameUser[i]); 
+                server.sendMessage( msg_str, [DB.nameUser[i].value]);
+            }
+        }
+    }
 	DB.msgs.push(msg_obj); 
 	//displayMessage( msg );
 }
-
-//Canal global CHAT
-
-
 
 function createNewUser()
 {
@@ -155,6 +163,7 @@ function createNewUser()
         newUser.nameU.value = ""; // Clean input
         activeUser = document.getElementById(newUser.id).id;
         DB.user.push(newUser.id); 
+        DB.nameUser.push(newUser.nameU.value); 
         //Change Person is active
         activePerson(node); 
     }
@@ -266,11 +275,14 @@ function logKey(e) {
 function ChangeNameRoom()
 {
     var NameUser = document.getElementById("NameMyUser");
-    var NameUserInput = document.getElementById("nameUser");
-    var NameRoomInput = document.getElementById("nameRoom");
-    var elm = document.createElement("h5");  //div
-    NameUser.value = NameUserInput.value; 
-    
+    var OldName = document.getElementById("NameMyUser").value;
+    //Capital first letter
+    if(MyName.value !=""){
+        NameUser.textContent=MyName.value.charAt(0).toUpperCase() + MyName.value.slice(1); 
+    }
+    ActualRoom = NameRoom.value; 
+    MyName.value =""; 
+    NameRoom.value =""; 
 }
 
 /*Overlay: Agregar usuario*/
