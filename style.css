@@ -609,10 +609,13 @@ li.Person img
 
 div #InformationRoom
 {
-  margin-top: 603px;
+  position: absolute;
+  left: 56px;
+  top: 862px;
   color: #fff;
-  margin-left: 10px;
+  margin-left: 40px;
   font-size: 10px;
+  width: 90px;
 }
 
 /*https://codepen.io/AllThingsSmitty/pen/jommGQ*/
