@@ -492,7 +492,15 @@ li{
   position: relative;
   left: -10px;
 }
-
+li#Grupal{
+  width: 60px;
+  margin-left: -7px;
+  background:rgba(143, 141, 141, 0.2); 
+  border-radius: 50px; 
+}
+li#Grupal img{
+  margin-left: 9px;
+}
 li img 
 {
   width: 42px; 
@@ -599,6 +607,13 @@ li.Person img
   margin-left: 200px;
 }
 
+div #InformationRoom
+{
+  margin-top: 603px;
+  color: #fff;
+  margin-left: 10px;
+  font-size: 10px;
+}
 
 /*https://codepen.io/AllThingsSmitty/pen/jommGQ*/
 .imessage {

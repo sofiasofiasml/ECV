@@ -41,31 +41,13 @@ function User(){
 //SERVER
 var server = new SillyClient();
 server.connect( "wss://ecv-etic.upf.edu/node/9000/ws", ActualRoom);
-grupalClick.addEventListener("click", changeRoom); 
-user1Click.addEventListener("click", changeRoom); 
-user2Click.addEventListener("click", changeRoom); 
-user3Click.addEventListener("click", changeRoom); 
-user4Click.addEventListener("click", changeRoom); 
-user5Click.addEventListener("click", changeRoom); 
-//CHANGE THE ROOM OF SERVER
-function changeRoom(){
-    console.log("CHANGE ROOM"); 
-    if(this.id == "Grupal"){
-        server.connect( "wss://ecv-etic.upf.edu/node/9000/ws", "CHAT");
-        for(var i= 0; i < DB.user.length; i++)
-        {
-            var userClick = document.getElementById(DB.user[i]);
-            userClick.style.background = 'rgba(143, 141, 141, 0)'; 
-            userClick.style.borderRadius = '0px';     
-        }
-    }
-    else{
-        server.connect( "wss://ecv-etic.upf.edu/node/9000/ws", ActualRoom);
-    }
-}
+
+
+
 server.on_ready = function( my_id )
 {
 	console.log("Connect server");
+    console.log("ROOM: "+ ActualRoom); 
 }
 
 server.on_message = function( my_id, msg)
@@ -160,10 +142,12 @@ function createNewUser()
         
         node.appendChild(imag);
         node.appendChild(nameList);
+        var nameUer= ""+ newUser.nameU.value; 
+        DB.nameUser.push(nameUer); 
         newUser.nameU.value = ""; // Clean input
         activeUser = document.getElementById(newUser.id).id;
         DB.user.push(newUser.id); 
-        DB.nameUser.push(newUser.nameU.value); 
+
         //Change Person is active
         activePerson(node); 
     }
@@ -171,12 +155,23 @@ function createNewUser()
         alert("Not mush Person"); 
     }
 }
+
+
 /*Change color background person is active talking */
 function activePerson(user)
 { 
+    if( user.id == "Grupal"){
+        user.style.background = 'rgba(143, 141, 141, 0.2)'; 
+        user.style.borderRadius = '50px'; 
+    }
+    else{
+        var userClick = document.getElementById("Grupal");
+        userClick.style.background = 'rgba(143, 141, 141, 0)'; 
+        userClick.style.borderRadius = '0px'; 
+    }
     for(var i= 0; i < DB.user.length; i++)
     {
-        if(user.id == DB.user[i] )
+        if(user.id == DB.user[i])
         {
             user.style.background = 'rgba(143, 141, 141, 0.2)'; 
             user.style.borderRadius = '50px'; 
@@ -281,10 +276,18 @@ function ChangeNameRoom()
         NameUser.textContent=MyName.value.charAt(0).toUpperCase() + MyName.value.slice(1); 
     }
     ActualRoom = NameRoom.value; 
+    changeRoom(); 
     MyName.value =""; 
     NameRoom.value =""; 
 }
-
+//CHANGE THE ROOM OF SERVER
+function changeRoom(){
+    console.log("ROOM: "+ ActualRoom); 
+    server.connect( "wss://ecv-etic.upf.edu/node/9000/ws", ActualRoom);
+    //Change text Room
+    var textRoomActual = document.getElementById("InformationRoom");
+    textRoomActual.textContent = "Room: " + ActualRoom; 
+}
 /*Overlay: Agregar usuario*/
 function togglePopup()
 {
