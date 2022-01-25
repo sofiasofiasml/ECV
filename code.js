@@ -72,7 +72,12 @@ user2Click.addEventListener("click", hiddenMessagesOtherUsers);
 user3Click.addEventListener("click", hiddenMessagesOtherUsers); 
 user4Click.addEventListener("click", hiddenMessagesOtherUsers); 
 user5Click.addEventListener("click", hiddenMessagesOtherUsers); 
+input.addEventListener("click", knowUserConnect); 
 
+function knowUserConnect(){
+    var textRoomActual = document.getElementById("InformationRoom");
+    textRoomActual.textContent = "Room: " + ActualRoom + "\nUsers Connected: "+server.num_clients; 
+}
 function hiddenMessagesOtherUsers()
 {
     //Change active Person 
@@ -286,7 +291,8 @@ function changeRoom(){
     server.connect( "wss://ecv-etic.upf.edu/node/9000/ws", ActualRoom);
     //Change text Room
     var textRoomActual = document.getElementById("InformationRoom");
-    textRoomActual.textContent = "Room: " + ActualRoom; 
+    textRoomActual.textContent = "Room: " + ActualRoom + " Users Connected: "+server.num_clients; 
+    
 }
 /*Overlay: Agregar usuario*/
 function togglePopup()
