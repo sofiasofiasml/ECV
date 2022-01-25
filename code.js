@@ -255,6 +255,10 @@ function OnKeyPress(e)
         var chat = document.querySelector("#chat");
         chat.innerHTML = "";
     }
+    console.log(e); 
+    if(e.code == "AltLeft"){
+        input.textContent += String.fromCodePoint(0x1F600);
+    }
 
     state.textContent="Escribiendo...";
         
