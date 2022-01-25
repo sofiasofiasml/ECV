@@ -16,13 +16,13 @@
                         <ul>
                             <li id= "Grupal"><img id="imgGrupal" src="img/iconW.png" alt="Aplication" width="42" height="42"></li>
                             <li><img src="img/plusPersonW.png" onclick="togglePopup()" alt="UserWriting" width="42" height="42"></li>
+                            <div id="InformationRoom">Room: u137424_room</div>
                             <li id = "User1"></li>
                             <li id = "User2"></li>
                             <li id = "User3"></li>
                             <li id = "User4"></li>
                             <li id = "User5"></li>
                         </ul>
-                    <div id="InformationRoom">Room: u137424_room</div>
                 </div>
 				<div id="horizontal_top">
                     <img src="img/MyUser.jpeg" alt="UserWriting" class="MyImage" width="60" height="60">
@@ -34,7 +34,7 @@
                 </div>
 
                 <div id="zone_writting">
-                    <div class="popup" id="popup-1">
+                    <div class="popup" id="popup-CreteNewUser">
                         <div class="overlayNewUser"></div>
                         <div class="DataNewUser">
                             <div class="close-btn" onclick="togglePopup()">&times;</div>
@@ -44,7 +44,7 @@
                             <input type="submit" value="Crear" onclick="createNewUser()">
                         </div>
                     </div>
-                    <div class="popup" id="popup-2">
+                    <div class="popup" id="popup-ChangeNameRoom">
                         <div class="overlayConfiguration"></div>
                         <div class="DataConfiguration">
                             <div class="close-btn" onclick="togglePopupConfig()">&times;</div>
@@ -59,8 +59,8 @@
                     <div class="imessage" id="chat"></div>
                     <div id="imsg">
                         <textarea id='textarea' placeholder="Escribe un mensaje aquí"></textarea>
-                        <button id="bottonSend">
-                            <img src="img/send.png" alt="imageSend" id="imageSend" onclick="ButtonSendMessage()" width="20" height="20">
+                        <button id="bottonSend" onclick="ButtonSendMessage()">
+                            <img src="img/send.png" alt="imageSend" id="imageSend"  width="20" height="20">
                         </button>
                     </div>
                 </div>

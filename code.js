@@ -21,6 +21,8 @@ var DB = {
     user: [],
     nameUser: []
 };
+var OldKeyPres = "0"; 
+var oneEmoji = false; 
 
 var grupalClick = document.getElementById("Grupal");
 var user1Click = document.getElementById("User1");
@@ -65,7 +67,7 @@ server.on_message = function( my_id, msg)
 }
 
 
-/*Ocultar mensajes enviados por otra persona*/
+/*Hide messages sent by someone else*/
 grupalClick.addEventListener("click", hiddenMessagesOtherUsers); 
 user1Click.addEventListener("click", hiddenMessagesOtherUsers); 
 user2Click.addEventListener("click", hiddenMessagesOtherUsers); 
@@ -84,7 +86,7 @@ function hiddenMessagesOtherUsers()
     activeUser = this.id; 
     activePerson(this); 
     for(var j = 0; j< DB.msgs.length; j++){
-        //no se vea el mensaje 
+        // don't see the message
         if(DB.msgs[j].username != this.id)
         {
             DB.msgs[j].hidden = true;  
@@ -92,7 +94,7 @@ function hiddenMessagesOtherUsers()
         }
         else{
             DB.msgs[j].hidden = false; 
-            //Si el mensaje no es del usuario selecionado, que no se vea
+            //If the message is not from the selected user, it should not be seen
             chat.childNodes[j].style.display =""; 
         }
     }
@@ -118,7 +120,6 @@ function onMessage(id,msg)
         }
     }
 	DB.msgs.push(msg_obj); 
-	//displayMessage( msg );
 }
 
 function createNewUser()
@@ -130,7 +131,6 @@ function createNewUser()
         newUser.nameU = document.querySelector("#nameUser"); 
                 
         var node = document.getElementById(newUser.id);
-       //node.className= "Person"; 
         node.setAttribute("class", "Person"); 
         node.setAttribute("click", "seeMessagePerson"); 
 
@@ -220,7 +220,7 @@ function ButtonSendMessage()
     }
 }
 
-/*Parentesis le pasas el resultado de la función, no la función*/
+/*No writing: switch to online*/
 input.addEventListener('keyup', handleKeyUp); 
 function handleKeyUp() {
     window.clearTimeout(timer); // prevent errant multiple timeouts from being generated
@@ -236,15 +236,19 @@ function handleKeyUp() {
 }, timeoutVal);
 }
 
-/*Shift+Enter: espacio
-Enter solo con nada: salto de linea no envia
-enter: envia, con contenido
-Supr: Delate message send in chat
-2 Enter without letter: clean message*/
+/*
+Shift+Enter: line break
+Enter only with nothing: do not send line break
+Enter: send, with content
+Del: Send all messages
+Press more than once Enter without content: clear textarea
+type ':' and press 'control' after: emoji
+*/
 
 input.addEventListener("keydown", OnKeyPress); 
 function OnKeyPress(e)
 {
+
     if(e.code == "Enter" && !e.shiftKey && input.value!="" && contEnter<1)
     {
         sendMissage(); 
@@ -255,18 +259,24 @@ function OnKeyPress(e)
         var chat = document.querySelector("#chat");
         chat.innerHTML = "";
     }
-    console.log(e); 
-    if(e.code == "AltLeft"){
-        input.textContent += String.fromCodePoint(0x1F600);
+    if(OldKeyPres == ":" && e.key == "Control" && !oneEmoji){
+        var text = input.value; 
+        input.value =text.slice(0,-1); 
+        input.value += String.fromCodePoint(0x1F600);
+        oneEmoji= true; 
     }
-
+    if(e.key != "Control"){
+        oneEmoji = false; 
+    }
+    
     state.textContent="Escribiendo...";
-        
 }
 /*When you write in input, change state: Escribiendo*/
 document.addEventListener('keypress', logKey);
 
 function logKey(e) {
+
+    OldKeyPres = e.key;
     if(e.code == "Enter" && !e.shiftKey)
     {
         contEnter +=1; 
@@ -298,13 +308,13 @@ function changeRoom(){
     textRoomActual.textContent = "Room: " + ActualRoom + " Users Connected: "+server.num_clients; 
     
 }
-/*Overlay: Agregar usuario*/
+/*Overlay: Add user*/
 function togglePopup()
 {
-    document.getElementById("popup-1").classList.toggle("active"); 
+    document.getElementById("popup-CreteNewUser").classList.toggle("active"); 
 }
-/*Overlay: Configuración romm y nombre de usuario*/
+/*Overlay: Room configuration and username*/
 function togglePopupConfig()
 {
-    document.getElementById("popup-2").classList.toggle("active"); 
+    document.getElementById("popup-ChangeNameRoom").classList.toggle("active"); 
 }
