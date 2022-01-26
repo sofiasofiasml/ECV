@@ -78,7 +78,7 @@ input.addEventListener("click", knowUserConnect);
 
 function knowUserConnect(){
     var textRoomActual = document.getElementById("InformationRoom");
-    textRoomActual.textContent = "Room: " + ActualRoom + "\nUsers Connected: "+server.num_clients; 
+    textRoomActual.textContent = "Habitación: " + ActualRoom + "\nUsuarios conectados: "+server.num_clients; 
 }
 function hiddenMessagesOtherUsers()
 {
@@ -240,7 +240,7 @@ function handleKeyUp() {
 Shift+Enter: line break
 Enter only with nothing: do not send line break
 Enter: send, with content
-Del: Send all messages
+Sup: Delate all messages
 Press more than once Enter without content: clear textarea
 type ':' and press 'control' after: emoji
 */
@@ -305,7 +305,7 @@ function changeRoom(){
     server.connect( "wss://ecv-etic.upf.edu/node/9000/ws", ActualRoom);
     //Change text Room
     var textRoomActual = document.getElementById("InformationRoom");
-    textRoomActual.textContent = "Room: " + ActualRoom + " Users Connected: "+server.num_clients; 
+    textRoomActual.textContent = "Habitación: " + ActualRoom + "\nUsuarios conectados: "+server.num_clients; 
     
 }
 /*Overlay: Add user*/
