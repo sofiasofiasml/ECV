@@ -29,4 +29,4 @@ Si pasas el cursor por la barra vertical se ven los nombres de usuario.
 
 ## Demo
 
- ![Demo CountPages alpha](gif.gif)
+ ![Demo CountPages alpha](fg.gif)
